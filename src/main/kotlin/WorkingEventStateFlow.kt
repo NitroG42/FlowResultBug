@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.filterNotNull
 class WorkingEventStateFlow<T> {
     val events: Flow<Event<Result<T>>>
         get() = eventMLD.filterNotNull()
-    val eventMLD = MutableStateFlow<Event<Result<T>>?>(null)
+    private val eventMLD = MutableStateFlow<Event<Result<T>>?>(null)
 
     fun result(result: Result<T>) {
         eventMLD.value = Event(result)
