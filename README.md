@@ -12,16 +12,19 @@ only once (with the `getContentIfNotHandled()` method).
 
 When subscribing to the **EventStateFlow**, the Event class will be hidden and it will only emit data that has not been 
 processed yet.
+
 Usually, the content of an **Event** is a Result so that the UI can easily differentiate success or error.
 
 # Bug
 
 My sample will try to emit a **FakeValue** through two **EventStateFlow**  :
-The **WorkingEventStateFlow** has a `Flow<Event<Result<FakeValue>>>` attribute. The UI (the main function) will consume the event 
+
+- The **WorkingEventStateFlow** has a `Flow<Event<Result<FakeValue>>>` attribute. The UI (the main function) will consume the event 
 emitted through the flow and display its content. This part is working.
 
-The **BuggedEventStateFlow** has a `Flow<Result<FakeValue>>` attribute. The Event part is hidden because we call 
+- The **BuggedEventStateFlow** has a `Flow<Result<FakeValue>>` attribute. The Event part is hidden because we call 
 `.mapNotNull { it?.getContentIfNotHandled() }` on the `MutableStateFlow<Event<Result<FakeValue>>>`
+
 The flow should be emitting a `Result<FakeValue>` but as the following crash suggests :
 
 ```
