@@ -1,3 +1,7 @@
+# Youtrack
+
+https://youtrack.jetbrains.com/issue/KT-40163
+
 # Use case
 
 Trying to create a class that would handle progression and event emission.
@@ -47,4 +51,5 @@ java.lang.ClassCastException: kotlin.Result cannot be cast to FakeValue
 
 It emits a `Result<Result<FakeValue>>` (the debugger show this when we evaluate the emitted value, but not in the watch view).
 A very strange bug indeed!  
+
 
