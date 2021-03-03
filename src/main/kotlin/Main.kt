@@ -24,7 +24,7 @@ fun main() {
     val buggedJob = bvm.uiState.events.onEach { result: Result<FakeValue> ->
         //Here result should be a Result<TestEnum> but runtime evaluation indicate Result<Result<TestEnum>>
         result.onSuccess {
-            println("got enum $it")
+            println("${bvm.javaClass.simpleName} WORKED, got enum $it")
         }.onFailure {
             println("got error $it")
         }
